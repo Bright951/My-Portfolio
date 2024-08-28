@@ -1,0 +1,118 @@
+@import '../../App.scss';
+
+.contact-screen-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-top: 90px;
+
+    .write-up-container{
+        width: 50%;
+        height: 100%;
+
+        h1{
+            margin-left: 30px;
+        }
+        .details-container{
+            margin-left: 30px;
+            margin-top: 30px;
+            span{
+                font-size: 25px;
+            }
+            p{
+                color: white;
+            }
+        }
+        p{
+            color: white;
+            font-size: 20px;
+            margin-left: 30px;
+        }
+    }
+
+    .form-container{
+        width: max-content;
+        margin-left: 30%;
+        margin-right: 100px;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.1);
+        margin-top: 20px;
+        padding: 20px;
+        height: max-content;
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+            input{
+                width: 25rem;
+                background: transparent;
+                border: 1px solid $primary-color;
+                border-radius: 5px;
+                color: $primary-color;
+    
+                &::placeholder{
+                    margin-left: 30px;
+                }
+            }
+
+            textarea{
+                width: 25rem;
+                background: transparent;
+                border: 1px solid $primary-color;
+            }
+    
+            .name-field, .email-field{
+                height: 50px;
+            }
+    
+            .message-field{
+                height: 250px;
+            }
+
+            .button-container{
+                display: flex;
+                flex-direction: row;
+                width: 25rem;
+
+                input[type='submit']{
+                    height: 40px;
+                    cursor: pointer;
+                    color: black;
+                    background: $primary-color;
+                    margin-right: 15px;
+                    font-size: 15px;
+                    font-weight: bold;
+
+                    &:hover{
+                        background: transparent;
+                        color: $primary-color;
+                        background: black;
+                        color: $primary-color;
+                        border: 1px solid white;
+                        transition: all 1s;
+                    }
+                }
+                input[type='reset']{
+                    height: 40px;
+                    cursor: pointer;
+                    color: black;
+                    background: $primary-color;
+                    font-weight: bold;
+                    font-size: 15px;
+
+                    &:hover{
+                        background: transparent;
+                        color: $primary-color;
+                        background: black;
+                        color: $primary-color;
+                        border: 1px solid white;
+                        transition: all 1s;
+                        }
+                }
+            }
+        }
+
+    }
+}
