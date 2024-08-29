@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './index.scss'
 import {motion} from 'framer-motion'
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+
+  const FormRef = useRef()
+
+    const sendEmail = (e)=>{
+      e.preventDefault();
+
+      emailjs
+      .sendForm('service_xkohrez', 'template_zhk6f5l', FormRef.current,{
+        publicKey:'wCkrwm7pqjeX4KQyB',
+        // process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      })
+      .then(()=>{
+        console.log('success')
+      })
+      .catch((err)=>{
+        console.log('failed', err)
+      })
+  }
 
     // const ContactUs = () => {
     //     const form = useRef(); 
@@ -49,30 +68,34 @@ const Contact = () => {
             <div className="details-container">
                 <span>Gmail:</span>
                 <p>KristalDev001@gmail.com</p>
-                <br/>
                 <span>Whatsaap Number:</span>
                 <p>07039390473</p>
             </div>
-            <br/>
-            <h1>OR</h1>
-            <br/>
-            <p>You could fill out the form next on the right hand side to drop me a message,
-                thank you.
-            </p>
+
+            <div className="options-container">
+              <h1>OR</h1>
+              <p>You could fill out the form next on the right hand side to drop me a message,
+                  thank you.
+              </p>
+            </div>
+
         </div>
         <motion.div className="form-container" variants={variants} initial='initial' whileInView='final'>
-            <form>
+            <form ref={FormRef} onSubmit={sendEmail}>
                 <input 
+                    name="user_name"
                     type='text' 
                     className='name-field' 
                     placeholder='Your Name. e.g John Doe'
                 />
                 <input 
+                    name='user_email'
                     type='email' 
                     className='email-field' 
                     placeholder='Your email address.'
                 />
-                <textarea 
+                <textarea
+                    name='message'
                     rows="15"
                     cols="3"
                 />
