@@ -124,9 +124,9 @@ const Contact = () => {
         {
           Suceeded && <SuccessModal/>
         }
-        {/* {
+        {
           loading && <Spinner/>
-        } */}
+        }
         {
           failed && <ErrorModal/>
         }
