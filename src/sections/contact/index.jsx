@@ -4,30 +4,51 @@ import {motion} from 'framer-motion'
 import emailjs from '@emailjs/browser';
 import ErrorModal from '../../components/ErrorModal';
 import SuccessModal from '../../components/SucessModal';
+import Spinner from '../../components/Spinner';
+import Empty from '../../components/Empty';
 
 const Contact = () => {
 
   const [failed, setFailed] = useState(false)
   const [Suceeded, setSuceeded] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
 
   const FormRef = useRef()
 
+  const Reset=()=>{
+    setName('')
+    setEmail('')
+    setMessage('')
+  }
+
     const sendEmail = (e)=>{
       e.preventDefault();
+      setFailed(false);
+      setSuceeded(false);
+      setLoading(true)
 
-      emailjs
-      .sendForm('service_xkohrez', 'template_zhk6f5l', FormRef.current,{
-        publicKey:'wCkrwm7pqjeX4KQyB',
-        // process.env.REACT_APP_EMAILJS_PUBLIC_KEY
-      })
-      .then(()=>{
-        console.log('success')
-        setSuceeded(true)
-      })
-      .catch((err)=>{
-        console.log('failed', err)
-        setFailed(true)
-      })
+      if (email || name || message === '' ) {
+        return <Empty/>
+      }
+      else{
+        emailjs
+          .sendForm('service_xkohrez', 'template_zhk6f5l', FormRef.current,{
+          publicKey:'wCkrwm7pqjeX4KQyB',
+          // process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+        })
+        .then(()=>{
+          console.log('success')
+          setSuceeded(true)
+        })
+        .catch((err)=>{
+          console.log('failed', err)
+          setFailed(true)
+        })
+      }
   }
 
     const variants ={
@@ -72,25 +93,43 @@ const Contact = () => {
                     type='text' 
                     className='name-field' 
                     placeholder='Your Name. e.g John Doe'
+                    value={name}
+                    onChange={(e)=>{ setName(e.target.value)}}
+                    autoFocus={true}
                 />
                 <input 
                     name='user_email'
                     type='email' 
                     className='email-field' 
                     placeholder='Your email address.'
+                    value={email}
+                    onChange={(e)=>{ setEmail(e.target.value)}}
                 />
                 <textarea
                     name='message'
                     rows="15"
                     cols="3"
+                    value={message}
+                    onChange={(e)=>{ setMessage(e.target.value)}}
+                    placeholder='Your Message'
                 />
                 <div className="button-container">
                     <input type='submit'/>
-                    <input type='reset'/>  
+                    <input type='reset' onClick={Reset}/>  
                 </div>
               {/* <legend>yor details</legend> */}
             </form>
+            
         </motion.div>
+        {
+          Suceeded && <SuccessModal/>
+        }
+        {/* {
+          loading && <Spinner/>
+        } */}
+        {
+          failed && <ErrorModal/>
+        }
     </div>
   )
 }
