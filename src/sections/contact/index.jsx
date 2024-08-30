@@ -30,11 +30,6 @@ const Contact = () => {
       setFailed(false);
       setSuceeded(false);
       setLoading(true)
-
-      if (email || name || message === '' ) {
-        return <Empty/>
-      }
-      else{
         emailjs
           .sendForm('service_xkohrez', 'template_zhk6f5l', FormRef.current,{
           publicKey:'wCkrwm7pqjeX4KQyB',
@@ -49,7 +44,6 @@ const Contact = () => {
           setFailed(true)
         })
       }
-  }
 
     const variants ={
         initial:{
