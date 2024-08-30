@@ -1,9 +1,14 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import './index.scss'
 import {motion} from 'framer-motion'
 import emailjs from '@emailjs/browser';
+import ErrorModal from '../../components/ErrorModal';
+import SuccessModal from '../../components/SucessModal';
 
 const Contact = () => {
+
+  const [failed, setFailed] = useState(false)
+  const [Suceeded, setSuceeded] = useState(false)
 
   const FormRef = useRef()
 
@@ -17,32 +22,13 @@ const Contact = () => {
       })
       .then(()=>{
         console.log('success')
+        setSuceeded(true)
       })
       .catch((err)=>{
         console.log('failed', err)
+        setFailed(true)
       })
   }
-
-    // const ContactUs = () => {
-    //     const form = useRef(); 
-      
-        // const sendEmail = (e) => {
-        //   e.preventDefault();
-      
-        //   emailjs
-        //     .sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, {
-        //       publicKey: 'YOUR_PUBLIC_KEY',
-        //     })
-        //     .then(
-        //       () => {
-        //         console.log('SUCCESS!');
-        //       },
-        //       (error) => {
-        //         console.log('FAILED...', error.text);
-        //       },
-        //     );
-        // };
-      
 
     const variants ={
         initial:{
@@ -61,7 +47,6 @@ const Contact = () => {
 
   return (
     <div className='contact-screen-container'>
-
         <div className="write-up-container">
             <h1>Want to know more?,<br/> Let's get in Touch.</h1>
 
