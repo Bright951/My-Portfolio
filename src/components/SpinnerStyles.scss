@@ -54,16 +54,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-.Empty-modal{
-  background: #000;
-  height: 150px;
-  width: 200px;
-  font-family: 'Chela';
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  align-items: center;
-  font-size: 30px;
-  
-}
+  .Empty-modal{
+    background: #000;
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    align-items: center;
+    font-family: 'Chela';
+    padding: 20px;
+    h1{
+      font-size: 20px;
+    }
+    p{
+      font-family: 'Poppins';
+      font-size: 18px;
+    }
+    .salutation{
+      font-family: 'Roboto';
+    }
+  }
+  .closed-modal{
+    display: none;
+  }
 }

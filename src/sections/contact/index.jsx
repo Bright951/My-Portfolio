@@ -12,6 +12,7 @@ const Contact = () => {
   const [failed, setFailed] = useState(false)
   const [Suceeded, setSuceeded] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [empty, setEmpty] = useState(false)
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -25,23 +26,35 @@ const Contact = () => {
     setMessage('')
   }
 
+  // const displayEmpty=(e)=>{
+    
+  // }
+
     const sendEmail = (e)=>{
-      e.preventDefault();
-      setFailed(false);
-      setSuceeded(false);
-      setLoading(true)
-        emailjs
-          .sendForm('service_xkohrez', 'template_zhk6f5l', FormRef.current,{
-          publicKey:'wCkrwm7pqjeX4KQyB',
+      // if(!name || !email || !message){
+      //   e.preventDefault()
+      //   setEmpty(true)
+      // }
+        e.preventDefault();
+        setFailed(false);
+        setSuceeded(false);
+        setLoading(true)
+          emailjs
+            .sendForm('service_xkohrez', 'template_zhk6f5l', FormRef.current,{
+            publicKey:'wCkrwm7pqjeX4KQyB',
           // process.env.REACT_APP_EMAILJS_PUBLIC_KEY
         })
         .then(()=>{
           console.log('success')
           setSuceeded(true)
+          setLoading(false)
+          Reset()
         })
         .catch((err)=>{
           console.log('failed', err)
           setFailed(true)
+          setLoading(false)
+          Reset()
         })
       }
 
@@ -122,8 +135,12 @@ const Contact = () => {
           loading && <Spinner/>
         }
         {
-          failed && <ErrorModal/>
+          failed && 
+            <ErrorModal/>
         }
+        {/* {
+          empty && <Empty/>
+        } */}
     </div>
   )
 }

@@ -1,9 +1,11 @@
-import React from 'react'
+import React , {useState}from 'react'
 import { links } from '../constants'
 import { FaFacebookSquare } from "react-icons/fa";
 import {motion} from 'framer-motion'
 
 const NavBar = () => {
+
+  const [active, setActive] = useState(false)
 
   const variants ={
     initial:{
@@ -29,6 +31,8 @@ const NavBar = () => {
             variants={variants} 
             initial='initial'
             whileInView='final'
+            // onClick={()=> setActive(true)}
+            // className={active ? 'active' : 'link'}
           >
             {link}
           </motion.a>

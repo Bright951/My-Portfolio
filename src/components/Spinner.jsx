@@ -6,7 +6,7 @@ const Spinner = () => {
     <div className='spinner-container'>
         <div className="spinner-modal">
             <div className='spinner'></div>
-            Loading...
+            Please Wait...
         </div>
     </div>
   )
