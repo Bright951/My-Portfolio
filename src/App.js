@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.scss'
 import Home from './sections/home'
-import Contaact from './sections/contaact'
+import Contact from './sections/contact/index.jsx'
 import NavBar from './components/NavBar.tsx'
 import About from './sections/about/index.jsx'
 
@@ -19,7 +19,7 @@ function App(){
                 <About/>
             </section>
             <section id='Contact'>
-                <Contaact/>
+                <Contact/>
             </section>
             <section id='Projects'></section>
             <section id='Others'></section>
